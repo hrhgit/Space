@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class force : MonoBehaviour
 {
-    public float gravit=200;
+    public float mass=200f;
 
     public Rigidbody ship;
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class force : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        ship.AddForce(gravit*(transform.position-ship.position));
+        float a = Vector3.Distance(transform.position, ship.position);
+        ship.AddForce(mass/a/a*(transform.position-ship.position).normalized);
     }
 }
